@@ -1,0 +1,16 @@
+from keras.datasets import mnist
+from keras.utils import to_categorical
+
+# Load the MNIST dataset
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# Preprocess the data: Flatten and normalize
+x_train = x_train.reshape(60000, 784).astype('float32') / 255
+x_test = x_test.reshape(10000, 784).astype('float32') / 255
+
+# Convert labels to one-hot encoding
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# Train the model
+model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_test, y_test))
