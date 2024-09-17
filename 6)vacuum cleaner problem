@@ -1,0 +1,33 @@
+import random
+
+def vacuum_cleaner():
+    # Initialize the room as a 5x5 grid
+    room = [['dirty' for _ in range(5)] for _ in range(5)]
+
+    # Define the vacuum cleaner's starting position
+    x, y = 0, 0
+
+    # Define the movements (up, down, left, right)
+    movements = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+    # Clean the room
+    while True:
+        # Check if the current position is dirty
+        if room[x][y] == 'dirty':
+            # Clean the current position
+            room[x][y] = 'clean'
+
+        # Choose a random movement
+        dx, dy = random.choice(movements)
+
+        # Update the position
+        x = (x + dx) % 5
+        y = (y + dy) % 5
+
+        # Check if the room is clean
+        if all(all(cell == 'clean' for cell in row) for row in room):
+            break
+
+    print("Room is clean!")
+
+vacuum_cleaner()
