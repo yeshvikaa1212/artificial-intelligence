@@ -1,0 +1,30 @@
+def solve_queens(n):
+    def is_safe(board, row, col):
+        for i in range(row):
+            if board[i] == col or \
+                board[i] - i == col - row or \
+                board[i] + i == col + row:
+                return False
+        return True
+
+    def place_queens(n, row, board):
+        if row == n:
+            result.append(board[:])
+            return
+        for col in range(n):
+            if is_safe(board, row, col):
+                board[row] = col
+                place_queens(n, row + 1, board)
+
+    result = []
+    place_queens(n, 0, [-1]*n)
+    return result
+
+# Example usage
+n = 8
+solutions = solve_queens(n)
+for i, solution in enumerate(solutions):
+    print(f"Solution {i+1}:")
+    for row in range(n):
+        print("X " * solution[row] + "Q " + "X " * (n - solution[row] - 1))
+    print()
