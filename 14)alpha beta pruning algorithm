@@ -1,0 +1,59 @@
+# Alpha-Beta Pruning example
+
+# Define a function to evaluate the board (similar to minimax)
+def evaluate(board):
+    # Example scoring
+    if board == "X wins":
+        return 10
+    elif board == "O wins":
+        return -10
+    else:
+        return 0
+
+# Alpha-Beta function
+def alpha_beta(board, depth, alpha, beta, isMaximizing):
+    score = evaluate(board)
+
+    # If game is over, return the score
+    if score == 10 or score == -10:
+        return score
+
+    # If the board is full, it's a tie
+    if depth == 0:
+        return 0
+
+    # Maximizer's move
+    if isMaximizing:
+        best = -float('inf')
+
+        for move in ["move1", "move2"]:  # Replace with actual moves
+            board = "X wins"  # Simulate move
+            best = max(best, alpha_beta(board, depth - 1, alpha, beta, False))
+            board = ""  # Undo move
+            alpha = max(alpha, best)
+
+            # Prune branches if alpha is greater than or equal to beta
+            if beta <= alpha:
+                break
+
+        return best
+
+    # Minimizer's move
+    else:
+        best = float('inf')
+
+        for move in ["move1", "move2"]:  # Replace with actual moves
+            board = "O wins"  # Simulate move
+            best = min(best, alpha_beta(board, depth - 1, alpha, beta, True))
+            board = ""  # Undo move
+            beta = min(beta, best)
+
+            # Prune branches if alpha is greater than or equal to beta
+            if beta <= alpha:
+                break
+
+        return best
+
+# Test Alpha-Beta function
+result = alpha_beta("", 3, -float('inf'), float('inf'), True)
+print("Best value for maximizer:", result)
