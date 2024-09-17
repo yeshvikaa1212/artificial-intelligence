@@ -1,0 +1,13 @@
+def water_jug(jug1, jug2, target):
+    if target % gcd(jug1, jug2) == 0:
+        return True
+    return False
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+# Example usage
+jug1, jug2, target = 3, 5, 4
+print(water_jug(jug1, jug2, target))  # Output: True
