@@ -1,0 +1,13 @@
+% Base case: an empty pattern matches an empty list
+pattern_match([], []).
+
+% Recursive case: check if the head of both lists match and then recurse for the tail
+pattern_match([PHead | PTail], [LHead | LTail]) :-
+    PHead = LHead,
+    pattern_match(PTail, LTail).
+
+% If a variable is used in the pattern, it can match any element in the list
+pattern_match([Var | PTail], [LHead | LTail]) :-
+    var(Var),  % Ensure Var is a variable
+    Var = LHead,  % Match Var with LHead
+    pattern_match(PTail, LTail).
