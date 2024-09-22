@@ -1,0 +1,15 @@
+symptom(john, fever).
+symptom(john, cough).
+symptom(mary, rash).
+symptom(mary, fever).
+symptom(alex, cough).
+symptom(alex, sore_throat).
+
+disease(fever, flu).
+disease(cough, cold).
+disease(rash, allergy).
+disease(sore_throat, strep_throat).
+
+diagnose_patient(Name, Disease) :-
+    symptom(Name, Symptom),
+    disease(Symptom, Disease).
