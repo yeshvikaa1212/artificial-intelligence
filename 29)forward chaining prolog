@@ -1,0 +1,10 @@
+fact(raining).
+fact(wet_grass).
+rule(wet_ground):-fact(raining).
+rule(slippery):-fact(wet_grass).
+rule(slippery):-fact(wet_ground).
+forward_chaining(Goal):-fact(Goal).
+forward_chaining(Goal):-
+rule(Goal),
+assert(fact(Goal)),
+forward_chaining(Goal).
